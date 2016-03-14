@@ -1,11 +1,12 @@
+#!/bin/bash
+# Pulls from the docker/compose github repository, builds the docker-compose binary, and pushes it to the WidgetsBurritos/docker-compose-old-mac respository. 
 
-# Navigate to our source repo#!/bin/bash
-
-SRC_REPO="~/git/compose"
-DEST_REPO="~/git/docker-compose-old-mac"
+# Initialize our folder/file paths.
+REPO_DIR="${HOME}/git/"
+SRC_REPO="${REPO_DIR}/compose"
+DEST_REPO="${REPO_DIR}/docker-compose-old-mac"
 DEST_FOLDER="${DEST_REPO}/bin"
-DCOM_FOLDER="/Users/davids/.docker-compose-old-mac"
-LOG_FILE="/Users/davids/git/compose.log"
+DCOM_FOLDER="${REPO_DIR}/.docker-compose-old-mac"
 LASTRUN_FILE="${DCOM_FOLDER}/lastrun"
 
 # Make DCOM folder if it doesn't already exist
@@ -28,7 +29,7 @@ git checkout ${VERSION} &>/dev/null
 
 # Build our binary
 ${SRC_REPO}/script/build-osx &>/dev/null
-DOCKER_COMPOSE_VERSION=$(${SRC_REPO}/dist/docker-compose-Darwin-x86_64 version | grep docker-compose | perl -p -e 's/docker-compose version ([0-9\.]+), build ([a-zA-Z0-9]+)/$1_build_$2/g')
+DOCKER_COMPOSE_VERSION=$(${SRC_REPO}/dist/docker-compose-Darwin-x86_64 version | grep docker-compose | perl -p -e 's/docker-compose version (.+), build ([a-zA-Z0-9]+)/$1_build_$2/g')
 VERSION_FILE="${DCOM_FOLDER}/${DOCKER_COMPOSE_VERSION}"
 if [ ! -f ${VERSION_FILE} ]; 
 then
