@@ -8,7 +8,7 @@ See these threads for futher details:
 - [Illegal instruction: 4](https://github.com/docker/compose/issues/1885)
 - [Docker-compose returns null error code (illegal instruction: 4) when installing on older Mac](https://github.com/kalabox/kalabox/issues/901)
 
-This repository contains binaries of versions that were compiled on an older Mac that seem to work for all Macs. 
+This repository contains binaries of versions that were compiled on an older Mac, starting with 1.5.2, that seem to work for both old and new Macs.
 
 A copy of the latest version of the docker-compose binary is always located at:
 
