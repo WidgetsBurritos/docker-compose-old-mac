@@ -42,18 +42,18 @@ then
 	# Establish and copy our destination file.
 	DEST_FILE="${DEST_FOLDER}/docker-compose-Darwin-x86_64-${DOCKER_COMPOSE_VERSION}"
 	cp ${SRC_FILE} ${DEST_FILE} &>/dev/null
-	git add ${DEST_FILE}
+	git add ${DEST_FILE} >& /dev/null
 
 	# If we're not trying to obtain a specific version via the command-line, then upload the latest version without the version/build info.
 	if [ "$1" == "" ];
 	then
 		DEST_LATEST_FILE="${DEST_FOLDER}/docker-compose-Darwin-x86_64"
 		cp ${SRC_FILE} ${DEST_LATEST_FILE} &>/dev/null
-		git add ${DEST_LATEST_FILE}
+		git add ${DEST_LATEST_FILE} >& /dev/null
 	fi
 
-	git commit -m "Added ${DOCKER_COMPOSE_VERSION}"	
-	git push
+	git commit -m "Added ${DOCKER_COMPOSE_VERSION}" >& /dev/null
+	git push >& /dev/null
 	touch ${VERSION_FILE}
 	echo "${DOCKER_COMPOSE_VERSION} has been uploaded to github"
 else
