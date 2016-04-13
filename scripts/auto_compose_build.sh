@@ -28,7 +28,16 @@ git checkout ${VERSION} &>/dev/null
 
 
 # Build our binary
-${SRC_REPO}/script/build-osx &>/dev/null
+if [ -f "${SRC_REPO}/script/build/osx" ];
+then
+	${SRC_REPO}/script/build/osx &>/dev/null
+elif [ -f "${SRC_REPO}/script/build-osx" ];
+then
+	${SRC_REPO}/script/build-osx &>/dev/null
+else
+	print "Could not find build script. Check the GitHub repo and try again\n"
+fi
+
 DOCKER_COMPOSE_VERSION=$(${SRC_REPO}/dist/docker-compose-Darwin-x86_64 version | grep docker-compose | perl -p -e 's/docker-compose version (.+), build ([a-zA-Z0-9]+)/$1_build_$2/g')
 VERSION_FILE="${DCOM_FOLDER}/${DOCKER_COMPOSE_VERSION}"
 if [ ! -f ${VERSION_FILE} ]; 
