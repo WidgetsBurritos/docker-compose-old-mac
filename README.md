@@ -1,5 +1,14 @@
 # Docker Compose Binaries for Older Macs. 
 
+## docker-compose 1.7.0-rc1 Update
+
+Good News! 
+[The issue this repository was built to correct has apparently been corrected as of docker-compose 1.7.0-rc1](https://github.com/docker/compose/issues/271#issuecomment-201203732)
+
+This repository will remains up for a while for anyone needing binaries of any 1.6 versions, but this should no longer be an issue moving forward. 
+
+## Original Instructions
+
 Older Macs don't compile the `docker-compose` binary properly and produce the following error when run:
 
 `Illegal instruction: 4`
